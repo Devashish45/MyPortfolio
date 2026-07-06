@@ -1,11 +1,11 @@
 {
-    "name": "portfolio",
-    "short_name": "portfolio",
+    "name": "Devashish Singh | Senior Software Engineer",
+    "short_name": "Devashish.dev",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#070d1f",
+    "theme_color": "#22d3ee",
+    "description": "Building fast, reliable mobile experiences for millions of users. Senior Software Engineer specializing in high-performance Android and cross-platform mobility.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
