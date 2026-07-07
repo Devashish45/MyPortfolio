@@ -4,6 +4,7 @@ import '../responsive_layout.dart';
 import '../strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/download_helper.dart';
+import '../portfolio_urls.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -52,12 +53,12 @@ class Footer extends StatelessWidget {
                       children: [
                         _FooterLink(
                           text: AppStrings.footerGithub,
-                          onTap: () => launchUrl(Uri.parse('https://github.com/devashish-singh')),
+                          onTap: () => launchUrl(Uri.parse(PortfolioUrls.github)),
                         ),
                         const SizedBox(width: 24.0),
                         _FooterLink(
                           text: AppStrings.footerLinkedIn,
-                          onTap: () => launchUrl(Uri.parse('https://linkedin.com/in/devashish-singh')),
+                          onTap: () => launchUrl(Uri.parse(PortfolioUrls.linkedin)),
                         ),
                         const SizedBox(width: 24.0),
                         _FooterLink(
@@ -90,12 +91,12 @@ class Footer extends StatelessWidget {
                       children: [
                         _FooterLink(
                           text: AppStrings.footerGithub,
-                          onTap: () => launchUrl(Uri.parse('https://github.com/devashish-singh')),
+                          onTap: () => launchUrl(Uri.parse(PortfolioUrls.github)),
                         ),
                         const SizedBox(width: 24.0),
                         _FooterLink(
                           text: AppStrings.footerLinkedIn,
-                          onTap: () => launchUrl(Uri.parse('https://linkedin.com/in/devashish-singh')),
+                          onTap: () => launchUrl(Uri.parse(PortfolioUrls.linkedin)),
                         ),
                         const SizedBox(width: 24.0),
                         _FooterLink(

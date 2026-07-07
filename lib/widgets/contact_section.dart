@@ -3,6 +3,7 @@ import '../theme.dart';
 import '../responsive_layout.dart';
 import '../strings.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../portfolio_urls.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -122,14 +123,14 @@ class ContactSection extends StatelessWidget {
               icon: Icons.code, // Stand-in for Github
               label: 'GitHub',
               color: AppColors.primary,
-              onPressed: () => launchUrl(Uri.parse('https://github.com/devashish-singh')),
+              onPressed: () => launchUrl(Uri.parse(PortfolioUrls.github)),
             ),
             const SizedBox(width: 16.0),
             _SocialButton(
               icon: Icons.business, // Stand-in for LinkedIn
               label: 'LinkedIn',
               color: AppColors.secondary,
-              onPressed: () => launchUrl(Uri.parse('https://linkedin.com/in/devashish-singh')),
+              onPressed: () => launchUrl(Uri.parse(PortfolioUrls.linkedin)),
             ),
           ],
         ),
