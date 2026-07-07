@@ -18,7 +18,7 @@ class AppStrings {
   static const String heroTitleMiddle = '. \nI build ';
   static const String heroTitleEnd = 'mobile experiences';
   static const String heroTitlePostEnd = ' for millions';
-  static const String heroDescription = 
+  static const String heroDescription =
       'Building fast, reliable mobile experiences for millions of users. Senior Software Engineer specializing in high-performance Android and cross-platform mobility.';
   static const String heroStatYrsValue = '10+';
   static const String heroStatYrsLabel = 'Yrs Exp';
@@ -36,14 +36,16 @@ class AppStrings {
   static const String ideSkillsValue1 = 'Android';
   static const String ideSkillsValue2 = 'Flutter';
   static const String ideSkillsValue3 = 'Compose Multiplatform';
-  static const String ideImpactValue1 = 'Impacted 50M+ active users via TataNeu';
+  static const String ideImpactValue1 =
+      'Impacted 50M+ active users via TataNeu';
   static const String ideImpactValue2 = 'Leadership at Dew Solutions';
-  static const String ideImpactValue3 = 'Focus: Clean Architecture & Performance';
+  static const String ideImpactValue3 =
+      'Focus: Clean Architecture & Performance';
 
   // About Section
   static const String aboutHeader = '01. ABOUT ME';
   static const String aboutSubHeader = 'Engineered for Scale';
-  static const String aboutBio = 
+  static const String aboutBio =
       'With over 10 years of experience, I am a seasoned Senior Software Engineer specializing in mobility. Currently leading high-impact projects at Dew Solutions, I focus on delivering scalable, high-performance Android and cross-platform applications. My core philosophy centers on Clean Architecture, performance optimization, and building robust systems that serve millions of users daily.';
   static const String aboutPhotoAsset = 'assets/img_developer.jpg';
   static const String aboutRankLabel = 'RANK';
@@ -74,7 +76,7 @@ class AppStrings {
   // Career Path (Experience) Section
   static const String expHeader = '03. CAREER PATH';
   static const String expSubHeader = 'Professional Evolution';
-  
+
   static const String exp1Role = 'Senior Software Engineer';
   static const String exp1Company = 'Dew Solutions';
   static const String exp1Period = '2021 — PRESENT';
@@ -96,38 +98,60 @@ class AppStrings {
   static const String exp3Role = 'Software Engineer';
   static const String exp3Company = 'DRPU Software';
   static const String exp3Period = 'Early Career';
-  static const String exp3Description = 
+  static const String exp3Description =
       'Started journey in Android development, building utility applications and mastering the core Android SDK fundamentals and Java programming.';
 
   // Works (Projects) Section
   static const String worksHeader = '04. WORKS';
-  static const String worksSubHeader = 'Featured Deployments';
-  
+  static const String worksSubHeader = 'Featured Projects';
+
   static const String proj1Title = 'TataNeu Super App';
-  static const String proj1Desc = 
+  static const String proj1Desc =
       "Leading Android engineering for India's premier super app, integrating multiple services into a unified high-performance experience.";
   static const String proj1Platform = '50M+ USERS';
-  static const String proj1ImageUrl = PortfolioUrls.proj1ImageUrl;
-  static const List<String> proj1Tags = ['#Kotlin', '#Hilt', '#Compose'];
+  static const List<String> proj1Tags = [
+    '#Kotlin',
+    '#Hilt',
+    '#MVVM',
+    '#Flutter',
+    '#MobX',
+    '#GetIt',
+    '#Analytics',
+    '#Push Notifications',
+  ];
 
   static const String proj2Title = 'TataCliq Luxury';
-  static const String proj2Desc = 
+  static const String proj2Desc =
       'Premium shopping experience for luxury brands, built with a focus on buttery-smooth animations and high-fidelity visuals.';
   static const String proj2Platform = '10M+ USERS';
-  static const String proj2ImageUrl = PortfolioUrls.proj2ImageUrl;
-  static const List<String> proj2Tags = ['#Kotlin', '#Flutter', '#Retrofit'];
+  static const List<String> proj2Tags = [
+    '#Android',
+    '#Kotlin',
+    '#Jetpack Compose',
+    '#Clean Architecture',
+    '#Hilt',
+    '#Firebase',
+  ];
 
   static const String proj3Title = 'TataCliq Fashion';
-  static const String proj3Desc = 
+  static const String proj3Desc =
       'Developing modular UI components for a massive fashion marketplace, ensuring consistency across diverse device categories.';
   static const String proj3Platform = 'SCALABLE UI';
-  static const String proj3ImageUrl = PortfolioUrls.proj3ImageUrl;
-  static const List<String> proj3Tags = ['#Android', '#Dagger', '#CleanArch'];
+  static const List<String> proj3Tags = [
+    '#Android',
+    '#JAVA',
+    '#XML',
+    '#Dagger',
+    '#MVVM',
+    '#Retrofit',
+    '#Firebase',
+    '#Rest Api',
+  ];
 
   // Network (Contact) Section
   static const String contactHeader = '05. NETWORK';
   static const String contactSubHeader = 'Initialize Connection';
-  static const String contactDescription = 
+  static const String contactDescription =
       "Interested in high-performance mobility solutions? Let's connect and build something impactful.";
   static const String contactEmail = 'devashish.negi45@gmail.com';
   static const String contactLocation = 'B.E. Computer Science, VTU';
@@ -143,7 +167,8 @@ class AppStrings {
   static const String contactValidationEmpty = 'Please enter some text';
 
   // Footer Section
-  static const String footerCopyright = '© 2026 Devashish Singh. All rights '
+  static const String footerCopyright =
+      '© 2026 Devashish Singh. All rights '
       'reserved.';
   static const String footerGithub = 'Github';
   static const String footerLinkedIn = 'LinkedIn';

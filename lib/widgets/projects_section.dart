@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../responsive_layout.dart';
 import '../strings.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../portfolio_urls.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
@@ -16,9 +18,7 @@ class ProjectsSection extends StatelessWidget {
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 1152.0),
-      padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 16.0 : 40.0,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 16.0 : 40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -29,9 +29,9 @@ class ProjectsSection extends StatelessWidget {
               Text(
                 AppStrings.worksHeader,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.primary,
-                      letterSpacing: 1.5,
-                    ),
+                  color: AppColors.primary,
+                  letterSpacing: 1.5,
+                ),
               ),
               const SizedBox(height: 8.0),
               Text(
@@ -41,7 +41,7 @@ class ProjectsSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 48.0),
-          
+
           // Projects Grid
           GridView.count(
             shrinkWrap: true,
@@ -55,53 +55,56 @@ class ProjectsSection extends StatelessWidget {
                 title: AppStrings.proj1Title,
                 description: AppStrings.proj1Desc,
                 platform: AppStrings.proj1Platform,
-                imageUrl: AppStrings.proj1ImageUrl,
                 tags: AppStrings.proj1Tags,
                 isCyanTheme: true,
+                androidUrl: PortfolioUrls.proj1Android,
+                iosUrl: PortfolioUrls.proj1Ios,
+                webUrl: PortfolioUrls.proj1Web,
               ),
               _ProjectCard(
                 title: AppStrings.proj2Title,
                 description: AppStrings.proj2Desc,
                 platform: AppStrings.proj2Platform,
-                imageUrl: AppStrings.proj2ImageUrl,
                 tags: AppStrings.proj2Tags,
                 isCyanTheme: false,
+                androidUrl: PortfolioUrls.proj2Android,
               ),
               _ProjectCard(
                 title: AppStrings.proj3Title,
                 description: AppStrings.proj3Desc,
                 platform: AppStrings.proj3Platform,
-                imageUrl: AppStrings.proj3ImageUrl,
                 tags: AppStrings.proj3Tags,
                 isCyanTheme: true,
+                androidUrl: PortfolioUrls.proj3Android,
               ),
             ],
           ),
-          
-
         ],
       ),
     );
   }
 }
 
-
-
 class _ProjectCard extends StatefulWidget {
   final String title;
   final String description;
   final String platform;
-  final String imageUrl;
   final List<String> tags;
   final bool isCyanTheme;
+
+  final String? androidUrl;
+  final String? iosUrl;
+  final String? webUrl;
 
   const _ProjectCard({
     required this.title,
     required this.description,
     required this.platform,
-    required this.imageUrl,
     required this.tags,
     required this.isCyanTheme,
+    this.androidUrl,
+    this.iosUrl,
+    this.webUrl,
   });
 
   @override
@@ -113,7 +116,9 @@ class _ProjectCardState extends State<_ProjectCard> {
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = widget.isCyanTheme ? AppColors.primary : AppColors.secondary;
+    final themeColor = widget.isCyanTheme
+        ? AppColors.primary
+        : AppColors.secondary;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -144,7 +149,7 @@ class _ProjectCardState extends State<_ProjectCard> {
             children: [
               // Cover Image Area
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -152,21 +157,28 @@ class _ProjectCardState extends State<_ProjectCard> {
                         scale: _isHovered ? 1.06 : 1.0,
                         duration: const Duration(milliseconds: 400),
                         curve: Curves.easeOut,
-                        child: Image.network(
-                          widget.imageUrl,
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: AppColors.primary,
-                              ),
-                            );
-                          },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                AppColors.surfaceContainerHigh,
+                                AppColors.surfaceContainer,
+                              ],
+                            ),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              _getProjectIcon(widget.title),
+                              color: themeColor,
+                              size: 48.0,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    
+
                     // Platform Tag Badge
                     Positioned(
                       top: 16.0,
@@ -199,12 +211,12 @@ class _ProjectCardState extends State<_ProjectCard> {
                   ],
                 ),
               ),
-              
+
               // Project Content Area
               Expanded(
-                flex: 6,
+                flex: 7,
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -214,7 +226,8 @@ class _ProjectCardState extends State<_ProjectCard> {
                         children: [
                           Text(
                             widget.title,
-                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            style: Theme.of(context).textTheme.headlineMedium
+                                ?.copyWith(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -222,7 +235,8 @@ class _ProjectCardState extends State<_ProjectCard> {
                           const SizedBox(height: 8.0),
                           Text(
                             widget.description,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
                                   color: AppColors.onSurfaceVariant,
                                   height: 1.5,
                                 ),
@@ -231,26 +245,132 @@ class _ProjectCardState extends State<_ProjectCard> {
                           ),
                         ],
                       ),
-                      
-                      // Tag row
-                      Wrap(
-                        spacing: 8.0,
-                        runSpacing: 4.0,
-                        children: widget.tags.map((tag) {
-                          return Text(
-                            tag,
-                            style: AppTheme.codeStyle(
-                              fontSize: 12.0,
-                              color: themeColor,
-                            ),
-                          );
-                        }).toList(),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Wrap(
+                            spacing: 8.0,
+                            runSpacing: 4.0,
+                            children: widget.tags.map((tag) {
+                              return Text(
+                                tag,
+                                style: AppTheme.codeStyle(
+                                  fontSize: 12.0,
+                                  color: themeColor,
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                          const Divider(
+                            color: AppColors.outlineVariant,
+                            height: 16.0,
+                            thickness: 1.0,
+                          ),
+                          Row(
+                            children: [
+                              if (widget.androidUrl != null)
+                                _ActionLink(
+                                  icon: Icons.android,
+                                  label: 'View on Android',
+                                  color: AppColors.secondary,
+                                  url: widget.androidUrl!,
+                                ),
+                              if (widget.androidUrl != null &&
+                                  widget.iosUrl != null)
+                                const SizedBox(width: 16.0),
+                              if (widget.iosUrl != null)
+                                _ActionLink(
+                                  icon: Icons.apple,
+                                  label: 'View on iOS',
+                                  color: AppColors.primary,
+                                  url: widget.iosUrl!,
+                                ),
+                              if (widget.iosUrl != null &&
+                                  widget.webUrl != null)
+                                const SizedBox(width: 16.0),
+                              if (widget.webUrl != null)
+                                _ActionLink(
+                                  icon: Icons.language,
+                                  label: 'View on Web',
+                                  color: AppColors.secondary,
+                                  url: widget.webUrl!,
+                                ),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  IconData _getProjectIcon(String title) {
+    if (title.contains('TataNeu')) {
+      return Icons.widgets;
+    } else if (title.contains('Luxury')) {
+      return Icons.shopping_bag;
+    } else if (title.contains('Fashion')) {
+      return Icons.checkroom;
+    }
+    return Icons.work;
+  }
+}
+
+class _ActionLink extends StatefulWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final String url;
+
+  const _ActionLink({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.url,
+  });
+
+  @override
+  State<_ActionLink> createState() => _ActionLinkState();
+}
+
+class _ActionLinkState extends State<_ActionLink> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: () => launchUrl(Uri.parse(widget.url)),
+        child: Tooltip(
+          message: widget.label,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: _isHovered
+                  ? widget.color.withValues(alpha: 0.1)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Icon(
+              widget.icon,
+              size: 20.0,
+              color: _isHovered
+                  ? (widget.color == AppColors.primary
+                        ? AppColors.secondary
+                        : AppColors.primary)
+                  : widget.color,
+            ),
           ),
         ),
       ),
