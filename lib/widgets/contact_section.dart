@@ -4,6 +4,7 @@ import '../responsive_layout.dart';
 import '../strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../portfolio_urls.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -304,17 +305,39 @@ class _ContactFormCardState extends State<_ContactFormCard> {
             
             // Submit Button
             _SubmitButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(AppStrings.contactSubmitSuccess),
-                      backgroundColor: AppColors.secondary,
-                    ),
-                  );
-                  _nameController.clear();
-                  _emailController.clear();
-                  _messageController.clear();
+                  try {
+                    final Email email = Email(
+                      body: 'Name: ${_nameController.text}\n'
+                            'Email: ${_emailController.text}\n\n'
+                            '${_messageController.text}',
+                      subject: 'Portfolio Contact from ${_nameController.text}',
+                      recipients: [AppStrings.contactEmail],
+                      isHTML: false,
+                    );
+                    await FlutterEmailSender.send(email);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(AppStrings.contactSubmitSuccess),
+                          backgroundColor: AppColors.secondary,
+                        ),
+                      );
+                      _nameController.clear();
+                      _emailController.clear();
+                      _messageController.clear();
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Could not launch email app: $e'),
+                          backgroundColor: AppColors.error,
+                        ),
+                      );
+                    }
+                  }
                 }
               },
             ),

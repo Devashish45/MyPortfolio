@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'portfolio_urls.dart';
 
 class AppStrings {
@@ -162,7 +163,7 @@ class AppStrings {
   static const String contactPlaceholderEmail = 'email@example.com';
   static const String contactFieldMessage = 'Your Message';
   static const String contactPlaceholderMessage = "Let's discuss a project...";
-  static const String contactSubmitButton = 'Send Transmission';
+  static const String contactSubmitButton = 'Send Message';
   static const String contactSubmitSuccess = 'Transmission sent successfully!';
   static const String contactValidationEmpty = 'Please enter some text';
 
